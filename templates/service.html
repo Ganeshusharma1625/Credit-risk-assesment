@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Inex- Credit Risk Assessment</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="/static/img/favicon.png" rel="icon">
+  <link href="/static/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/static/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/static/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/static/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="/static/css/main.css" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Open Sans', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      min-height: 100vh;
+    }
+    
+    h2 {
+      text-align: center;
+      color: #131212cc;
+      margin-bottom: 30px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+    
+    form {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px;
+      border-radius: 0;
+      box-shadow: none;
+      width: 100%;
+      max-width: 100%;
+      color: #343a40;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .form-container {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+    }
+    
+    label {
+      font-weight: 600;
+      margin: 12px 0 6px;
+      display: block;
+      color: #222;
+    }
+    
+    select, input[type=submit] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 18px;
+      border: 1.8px solid #ced4da;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      outline-offset: 2px;
+    }
+    
+    select:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 6px #007bffaa;
+    }
+    
+    input[type=submit] {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgb(0 123 255 / 0.6);
+      transition: background-color 0.3s, box-shadow 0.3s;
+      margin-top: 20px;
+    }
+    
+    input[type=submit]:hover,
+    input[type=submit]:focus {
+      background-color: #0056b3;
+      box-shadow: 0 8px 20px rgb(0 86 179 / 0.8);
+    }
+    
+    .result {
+      margin-top: 25px;
+      font-size: 22px;
+      font-weight: 700;
+      text-align: center;
+      color: #28a745;
+      text-shadow: 0 0 5px #1e7e34;
+    }
+    
+    /* Scrollbar styling for nicer UI */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1; 
+      border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: #007bff; 
+      border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #0056b3; 
+    }
+    
+    /* Responsive adjustments */
+    @media (min-width: 768px) {
+      form {
+        padding: 60px;
+      }
+      
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+    }
+    
+    @media (min-width: 992px) {
+      form {
+        padding: 80px 120px;
+      }
+    }
+  </style>
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header sticky-top">
+    <div class="topbar d-flex align-items-center">
+      <div class="container d-flex justify-content-center justify-content-md-between">
+        <div class="contact-info d-flex align-items-center">
+          <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:home@grrassolutions.in">home@grrassolutions.in</a></i>
+          <i class="bi bi-phone d-flex align-items-center ms-4"><span>+919672108200</span></i>
+        </div>
+        <div class="social-links d-none d-md-flex align-items-center">
+          <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+    </div><!-- End Top Bar -->
+
+    <div class="branding d-flex align-items-cente">
+      <div class="container position-relative d-flex align-items-center justify-content-between">
+        <a href="/" class="logo d-flex align-items-center">
+          <h1 class="sitename">Credit Risk Assessment</h1>
+        </a>
+        <nav id="navmenu" class="navmenu">
+          <ul>
+            <li><a href="/" class="active">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/service">Service</a></li>
+            <li><a href="/dti-calculator">Debt-to-Income Ratio Calculator</a></li>
+
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="form-container">
+      <form action="/predict" method="post">
+        <h2>Credit Risk Assessment</h2>
+        
+        <div class="form-grid">
+          <div>
+            <label for="age">Age:</label>
+            <select name="age" id="age">
+              {% for val in range(18, 66, 2) %}
+              <option value="{{ val }}">{{ val }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          
+          <div>
+            <label for="ed">Education Level:</label>
+            <select name="ed" id="ed">
+              <option value="1">High School</option>
+              <option value="2">Associate Degree</option>
+              <option value="3">Bachelor's</option>
+              <option value="4">Master's</option>
+              <option value="5">PhD</option>
+            </select>
+          </div>
+          
+          <div>
+            <label for="employ">Years Employed:</label>
+            <select name="employ" id="employ">
+              {% for val in range(0, 41, 2) %}
+              <option value="{{ val }}">{{ val }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          
+          <div>
+            <label for="address">Years at Address:</label>
+            <select name="address" id="address">
+              {% for val in range(0, 21) %}
+              <option value="{{ val }}">{{ val }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          
+          <div>
+            <label for="income">Income (in thousands):</label>
+            <select name="income" id="income">
+              {% for val in [20, 30, 40, 50, 60, 75, 90, 120, 150] %}
+              <option value="{{ val }}">{{ val }}k</option>
+              {% endfor %}
+            </select>
+          </div>
+          
+          <div>
+            <label for="debtinc">Debt-to-Income Ratio:</label>
+            <select name="debtinc" id="debtinc">
+              {% for val in [10, 15, 20, 25, 30, 35, 40, 45] %}
+              <option value="{{ val }}">{{ val }}%</option>
+              {% endfor %}
+            </select>
+          </div>
+          
+          <div>
+            <label for="creddebt">Credit Card Debt:</label>
+            <select name="creddebt" id="creddebt">
+              {% for val in [0.5, 1.0, 1.5, 2.0, 3.0, 4.0, 5.0] %}
+              <option value="{{ val }}">{{ val }}k</option>
+              {% endfor %}
+            </select>
+          </div>
+          
+          <div>
+            <label for="othdebt">Other Debt:</label>
+            <select name="othdebt" id="othdebt">
+              {% for val in [0.5, 1.0, 1.5, 2.0, 3.0, 4.0] %}
+              <option value="{{ val }}">{{ val }}k</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <input type="submit" value="Predict">
+
+        {% if prediction_text %}
+        <div class="result">{{ prediction_text }}</div>
+        {% endif %}
+      </form>
+    </div>
+  </main>
+
+  <footer id="footer" class="footer">
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Credit Risk Assessment</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">
+        Designed by <a href="https://bootstrapmade.com/">Ganeshu Sharma</a> Distributed by <a href="https://themewagon.com">Credit Risk</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+  <!-- Vendor JS Files -->
+  <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/vendor/php-email-form/validate.js"></script>
+  <script src="/static/vendor/aos/aos.js"></script>
+  <script src="/static/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/static/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="/static/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="/static/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/static/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="/static/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="/static/js/main.js"></script>
+
+</body>
+</html>

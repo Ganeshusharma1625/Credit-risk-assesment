@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script> <!-- Plugin for data labels -->
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .result {
+            font-size: 24px;
+            font-weight: 600;
+            color: #007bff;
+            margin: 20px 0;
+        }
+        .icon {
+            font-size: 50px;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+        canvas {
+            margin-top: 30px;
+            max-width: 100%;
+        }
+        a.button {
+            display: inline-block;
+            margin-top: 30px;
+            text-decoration: none;
+            color: white;
+            background: #007bff;
+            padding: 12px 25px;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+        }
+        a.button:hover {
+            background: #0056b3;
+        }
+        /* Recommendations style */
+        .recommendations {
+            margin-top: 30px;
+            text-align: left;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .recommendations h4 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .recommendations ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            color: #555;
+        }
+        .recommendations ul li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">📊</div>
+        <h2>Loan Default Prediction Result</h2>
+        <div class="result">{{ prediction_text }}</div>
+
+        {% if prob_default is defined and prob_no_default is defined %}
+        <canvas id="pieChart" width="400" height="400"></canvas>
+        <script>
+            const dataValues = [{{ prob_default }}, {{ prob_no_default }}];
+            const ctx = document.getElementById('pieChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Will Default', 'Will Not Default'],
+                    datasets: [{
+                        data: dataValues,
+                        backgroundColor: ['#dc3545', '#28a745']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#333',
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.label + ': ' + context.parsed + '%';
+                                }
+                            }
+                        },
+                        datalabels: {
+                            color: '#fff',
+                            font: {
+                                weight: 'bold',
+                                size: 14
+                            },
+                            formatter: function(value, context) {
+                                const total = context.chart._metasets[0].total || dataValues.reduce((a, b) => a + b, 0);
+                                const percentage = (value / total * 100).toFixed(1);
+                                return percentage + '%';
+                            }
+                        }
+                    }
+                },
+                plugins: [ChartDataLabels]
+            });
+        </script>
+        {% endif %}
+
+        {% if recommendations %}
+        <div class="recommendations">
+            <h4>Recommendations:</h4>
+            <ul>
+                {% for rec in recommendations %}
+                    <li>{{ rec }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% if pdf_file %}
+    <a href="{{ url_for('static', filename='pdf_reports/' + pdf_file) }}" class="button" download>
+        📥 Download PDF Report
+    </a>
+{% endif %}
+<br>
+
+        
+
+        <a href="/" class="button">🔙 Go Back</a>
+
+        
+        
+    </div>
+</body>
+</html>
